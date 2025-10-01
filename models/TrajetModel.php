@@ -1,6 +1,13 @@
 <?php
 
 class TrajetModel
+/**
+ * Classe TrajetModel
+ * 
+ * Ce modèle s'occupe de récupérer les données sur les trajets.
+ * Il interagit avec le base de données pour récupérer les données
+ * et retourne les résultats au controller.
+ */
 {
     private $pdo;
 

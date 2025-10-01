@@ -1,6 +1,13 @@
 <?php
 
 class ChauffeurModel
+/**
+ * Classe ChauffeurController
+ * 
+ * Ce modèle s'occupe de récupérer les données sur les chauffeurs.
+ * Il interagit avec le base de données pour récupérer les données
+ * et retourne les résultats au controller.
+ */
 {
     private $pdo;
 

@@ -3,6 +3,13 @@
 require_once "models/TrajetModel.php";
 
 class TrajetController
+/**
+ * Classe TrajetController
+ * 
+ * Ce contrôleur gère les opérations liées aux trajets.
+ * Il interagit avec le TrajetModel pour récupérer les données
+ * et retourne les résultats au format JSON.
+ */
 {
     private $model;
 

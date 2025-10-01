@@ -3,6 +3,13 @@
 require_once "models/ClientModel.php";
 
 class ClientController
+/**
+ * Classe ClientController
+ * 
+ * Ce contrôleur gère les opérations liées aux clients.
+ * Il interagit avec le ClientModel pour récupérer les données
+ * et retourne les résultats au format JSON.
+ */
 {
     private $model;
 
