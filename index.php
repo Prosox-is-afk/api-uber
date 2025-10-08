@@ -62,7 +62,7 @@ if (empty($_GET["page"])) {
             // Si un second segment est présent (ex: un ID), on l’utilise
             if (isset($url[1])) {
                 // Exemple : /trajets/3 → affiche les infos du trajet 3
-                echo "Afficher les informations du trajet : ". $url[1];
+                $trajetController->getTrajetById($url[1]);
             } else {
                 // Sinon, on affiche tous les trajets
                 $trajetController->getAllTrajets();

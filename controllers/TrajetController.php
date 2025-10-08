@@ -23,6 +23,12 @@ class TrajetController
         $trajets = $this->model->getDBAllTrajets();
         echo json_encode($trajets);
     }
+
+    public function getTrajetById($id)
+    {
+        $trajet = $this->model->getDBTrajetById($id);
+        echo json_encode($trajet);
+    }
 }
 // $trajetController = new TrajetController();
 // $trajetController->getAllTrajets();
