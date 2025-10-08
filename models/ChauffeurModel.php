@@ -2,7 +2,7 @@
 
 class ChauffeurModel
 /**
- * Classe ChauffeurController
+ * Classe ChauffeurModel
  * 
  * Ce modèle s'occupe de récupérer les données sur les chauffeurs.
  * Il interagit avec le base de données pour récupérer les données

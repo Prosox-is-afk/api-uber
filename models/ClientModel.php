@@ -2,7 +2,7 @@
 
 class ClientModel
 /**
- * Classe ClientController
+ * Classe ClientModel
  * 
  * Ce modèle s'occupe de récupérer les données sur les clients.
  * Il interagit avec le base de données pour récupérer les données
