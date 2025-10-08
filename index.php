@@ -51,7 +51,7 @@ if (empty($_GET["page"])) {
             // Si un second segment est présent (ex: un ID), on l’utilise
             if (isset($url[1])) {
                 // Exemple : /voitures/3 → affiche les infos du voiture 3
-                echo "Afficher les informations de la voiture : ". $url[1];
+                $voitureController->getVoitureById($url[1]);
             } else {
                 // Sinon, on affiche tous les voitures
                 $voitureController->getAllVoitures();

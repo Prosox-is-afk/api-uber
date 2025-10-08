@@ -23,6 +23,12 @@ class VoitureController
         $voitures = $this->model->getDBAllVoitures();
         echo json_encode($voitures);
     }
+
+    public function getVoitureById($id)
+    {
+        $voiture = $this->model->getDBVoitureById($id);
+        echo json_encode($voiture);
+    }
 }
 // $voitureController = new VoitureController();
 // $voitureController->getAllVoitures();

@@ -26,6 +26,14 @@ class VoitureModel
         $stmt = $this->pdo->query("SELECT * FROM Voiture");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
+    public function getDBVoitureById($id)
+    {
+        $sql = "SELECT * FROM voiture WHERE voiture_id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['id' => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
 
 // $voitures = new VoitureModel();
