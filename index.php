@@ -26,11 +26,16 @@ if (empty($_GET["page"])) {
     // On teste le premier segment pour déterminer la ressource demandée
     switch($url[0]) {
         case "chauffeurs" : 
+            if (isset($url[2]) && $url[2] === "voitures" && isset($url[1])) {
+                // Exemple : /chauffeurs/3/voiture → affiche toutes les voitures du chauffeur 3
+                $chauffeurController->getVoitureByChauffeurId($url[1]);
+            }
             // Si un second segment est présent (ex: un ID), on l’utilise
-            if (isset($url[1])) {
+            else if (isset($url[1])) {
                 // Exemple : /chauffeurs/3 → affiche les infos du chauffeur 3
                 $chauffeurController->getChauffeurById($url[1]);
-            } else {
+            } 
+            else {
                 // Sinon, on affiche tous les chauffeurs
                 $chauffeurController->getAllChauffeurs();
             }

@@ -35,6 +35,14 @@ class ChauffeurModel
         $stmt->execute(['id' => $id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function getDBVoitureByChauffeurId($id)
+    {
+        $sql = "SELECT * FROM `voiture` WHERE chauffeur_id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['id' => $id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 
 // $chauffeurs = new ChauffeurModel();
