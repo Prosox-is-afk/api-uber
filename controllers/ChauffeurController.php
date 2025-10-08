@@ -24,6 +24,12 @@ class ChauffeurController
         $chauffeurs = $this->model->getDBAllChauffeurs();
         echo json_encode($chauffeurs);
     }
+
+    public function getChauffeurById($id)
+    {
+        $chauffeur = $this->model->getDBChauffeurById($id);
+        echo json_encode($chauffeur);
+    }
 }
 // $chauffeurController = new ChauffeurController();
 // $chauffeurController->getAllChauffeurs();

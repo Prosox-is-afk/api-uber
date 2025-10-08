@@ -23,8 +23,17 @@ class ChauffeurModel
 
     public function getDBAllChauffeurs()
     {
-        $stmt = $this->pdo->query("SELECT * FROM Chauffeur");
+        $sql = "SELECT * FROM Chauffeur";
+        $stmt = $this->pdo->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getDBChauffeurById($id)
+    {
+        $sql = "SELECT * FROM Chauffeur WHERE chauffeur_id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['id' => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
 
