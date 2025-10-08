@@ -23,6 +23,12 @@ class ClientController
         $clients = $this->model->getDBAllClients();
         echo json_encode($clients);
     }
+
+    public function getClientById($id)
+    {
+        $client = $this->model->getDBClientById($id);
+        echo json_encode($client);
+    }
 }
 // $clientController = new ClientController();
 // $clientController->getAllClients();

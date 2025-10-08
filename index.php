@@ -40,7 +40,7 @@ if (empty($_GET["page"])) {
             // Si un second segment est présent (ex: un ID), on l’utilise
             if (isset($url[1])) {
                 // Exemple : /clients/3 → affiche les infos du client 3
-                echo "Afficher les informations du client : ". $url[1];
+                $clientController->getClientById($url[1]);
             } else {
                 // Sinon, on affiche tous les clients
                 $clientController->getAllClients();

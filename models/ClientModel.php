@@ -26,6 +26,14 @@ class ClientModel
         $stmt = $this->pdo->query("SELECT * FROM Client");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getDBClientById($id)
+    {
+        $sql = "SELECT * FROM Client WHERE client_id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['id' => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
 
 // $clients = new ClientModel();
