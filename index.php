@@ -85,7 +85,9 @@ if (empty($_GET["page"])) {
                     break;
                 case "PUT":
                     if (isset($url[1])) {
-                        $clientController->updateClient($url[1]);
+                        $data = json_decode(file_get_contents('php://input'), true);
+                        $clientController->updateClient($url[1], $data);
+                        echo json_encode($data);
                     } else {
                         echo "L'ID du client est requis pour la mise à jour.";
                     }
