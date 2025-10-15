@@ -50,7 +50,9 @@ if (empty($_GET["page"])) {
                     break;
                 case "PUT":
                     if (isset($url[1])) {
-                        $chauffeurController->updateChauffeur($url[1]);
+                        $data = json_decode(file_get_contents('php://input'), true);
+                        $chauffeurController->updateChauffeur($url[1], $data);
+                        echo json_encode($data);
                     } else {
                         echo "L'ID du chauffeur est requis pour la mise à jour.";
                     }
