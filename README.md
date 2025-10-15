@@ -43,4 +43,5 @@ Voici les différents endpoints de l'API :
 - `GET /voitures/{id}` → Afficher la voiture avec l'id égal à {id}
 
 - `POST /chauffeurs` → Créer un nouveau chauffeur
+- `POST /clients` → Créer un nouveau chauffeur
 

@@ -65,17 +65,38 @@ if (empty($_GET["page"])) {
             }
             break;
             
-        case "clients" : 
-            // Si un second segment est présent (ex: un ID), on l’utilise
-            if (isset($url[1])) {
-                // Exemple : /clients/3 → affiche les infos du client 3
-                $clientController->getClientById($url[1]);
-            } else {
-                // Sinon, on affiche tous les clients
-                $clientController->getAllClients();
+        case "clients" :
+            switch ($method) {
+                case "GET":
+                    // Si un second segment est présent (ex: un ID), on l’utilise
+                    if (isset($url[1])) {
+                        // Exemple : /clients/3 → affiche les infos du client 3
+                        $clientController->getClientById($url[1]);
+                    } else {
+                        // Sinon, on affiche tous les clients
+                        $clientController->getAllClients();
+                    }
+                    break;
+                case "POST":
+                    $data = json_decode(file_get_contents('php://input'), true);
+                    $clientController->createClient($data);
+                    break;
+                case "PUT":
+                    if (isset($url[1])) {
+                        $clientController->updateClient($url[1]);
+                    } else {
+                        echo "L'ID du client est requis pour la mise à jour.";
+                    }
+                    break;
+                case "DELETE":
+                    if (isset($url[1])) {
+                        $clientController->deleteClient($url[1]);
+                    } else {
+                        echo "L'ID du client est requis pour la suppression.";
+                    }
+                    break;
             }
             break;
-
         case "voitures" : 
             // Si un second segment est présent (ex: un ID), on l’utilise
             if (isset($url[1])) {
