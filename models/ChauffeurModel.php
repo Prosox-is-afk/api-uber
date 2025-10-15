@@ -32,7 +32,8 @@ class ChauffeurModel
     {
         $sql = "SELECT * FROM Chauffeur WHERE chauffeur_id = :id";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute(['id' => $id]);
+        $stmt ->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -40,8 +41,21 @@ class ChauffeurModel
     {
         $sql = "SELECT * FROM `voiture` WHERE chauffeur_id = :id";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute(['id' => $id]);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function createDBChauffeur($data)
+    {
+        $sql = "INSERT INTO Chauffeur (chauffeur_id, chauffeur_nom, chauffeur_telephone) VALUES (:chauffeur_id, :chauffeur_nom, :chauffeur_telephone)";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->BindParam(':chauffeur_id', $data['chauffeur_id'], PDO::PARAM_INT);
+        $stmt->BindParam(':chauffeur_nom', $data['chauffeur_nom'], PDO::PARAM_STR);
+        $stmt->BindParam(':chauffeur_telephone', $data['chauffeur_telephone'], PDO::PARAM_INT);
+        $stmt->execute();
+        
+        return $this->getDBChauffeurById($data['chauffeur_id']);
     }
 }
 

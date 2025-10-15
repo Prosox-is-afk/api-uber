@@ -31,7 +31,8 @@ class VoitureModel
     {
         $sql = "SELECT * FROM voiture WHERE voiture_id = :id";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute(['id' => $id]);
+        $stmt ->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }

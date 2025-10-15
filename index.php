@@ -21,27 +21,50 @@ if (empty($_GET["page"])) {
     // On découpe cette chaîne en segments, en séparant sur le caractère "/"
     // Cela donne un tableau, ex : ["chauffeurs", "3"]
     $url = explode("/", $_GET['page']);
+    $method = $_SERVER['REQUEST_METHOD'];
     
     
     // On teste le premier segment pour déterminer la ressource demandée
     switch($url[0]) {
-        case "chauffeurs" : 
-            // Si un troisème segment est présent, on l’utilise
-            if (isset($url[2]) && $url[2] === "voitures" && isset($url[1])) {
-                // Exemple : /chauffeurs/3/voiture → affiche toutes les voitures du chauffeur 3
-                $chauffeurController->getVoitureByChauffeurId($url[1]);
-            }
-            // Si un second segment est présent (ex: un ID), on l’utilise
-            else if (isset($url[1])) {
-                // Exemple : /chauffeurs/3 → affiche les infos du chauffeur 3
-                $chauffeurController->getChauffeurById($url[1]);
-            } 
-            else {
-                // Sinon, on affiche tous les chauffeurs
-                $chauffeurController->getAllChauffeurs();
+        case "chauffeurs" :
+            switch($method) {
+                case "GET":
+                    // Si un troisème segment est présent, on l’utilise
+                    if (isset($url[2]) && $url[2] === "voitures" && isset($url[1])) {
+                        // Exemple : /chauffeurs/3/voitures → affiche toutes les voitures du chauffeur 3
+                        $chauffeurController->getVoitureByChauffeurId($url[1]);
+                    }
+                    // Si un second segment est présent (ex: un ID), on l’utilise
+                    else if (isset($url[1])) {
+                        // Exemple : /chauffeurs/3 → affiche les infos du chauffeur 3
+                        $chauffeurController->getChauffeurById($url[1]);
+                    } 
+                    else {
+                        // Sinon, on affiche tous les chauffeurs
+                        $chauffeurController->getAllChauffeurs();
+                    }
+                    break;
+                case "POST":
+                    $data = json_decode(file_get_contents('php://input'), true);
+                    $chauffeurController->createChauffeur($data);
+                    break;
+                case "PUT":
+                    if (isset($url[1])) {
+                        $chauffeurController->updateChauffeur($url[1]);
+                    } else {
+                        echo "L'ID du chauffeur est requis pour la mise à jour.";
+                    }
+                    break;
+                case "DELETE":
+                    if (isset($url[1])) {
+                        $chauffeurController->deleteChauffeur($url[1]);
+                    } else {
+                        echo "L'ID du chauffeur est requis pour la suppression.";
+                    }
+                    break;
             }
             break;
-
+            
         case "clients" : 
             // Si un second segment est présent (ex: un ID), on l’utilise
             if (isset($url[1])) {

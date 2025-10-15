@@ -31,7 +31,8 @@ class TrajetModel
     {
         $sql = "SELECT * FROM trajet WHERE trajet_id = :id";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute(['id' => $id]);
+        $stmt ->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -44,7 +45,8 @@ class TrajetModel
         INNER JOIN chauffeur c ON c.chauffeur_id = t.chauffeur_id
         WHERE t.trajet_id = :trajet_id";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute(['trajet_id' => $trajet_id]);
+        $stmt->bindParam(':trajet_id', $trajet_id, PDO::PARAM_INT);
+        $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

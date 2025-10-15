@@ -36,6 +36,18 @@ class ChauffeurController
         $chauffeur = $this->model->getDBVoitureByChauffeurId($id);
         echo json_encode($chauffeur);
     }
+
+    public function createChauffeur($data)
+    {
+        $newChauffeurId = $this->model->createDBChauffeur($data);
+        if ($newChauffeurId) {
+            http_response_code(201); // Ressource créée
+            echo json_encode($newChauffeurId);
+        } else {
+            http_response_code(500); // Erreur interne du serveur
+            echo json_encode(["message" => "Error creating chauffeur"]);
+        }
+    }
 }
 // $chauffeurController = new ChauffeurController();
 // $chauffeurController->getAllChauffeurs();
