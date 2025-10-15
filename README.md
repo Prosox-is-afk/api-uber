@@ -48,3 +48,6 @@ Voici les différents endpoints de l'API :
 - `PUT /chauffeurs/{id}` → Modifier un chauffeur avec son id
 - `PUT /clients/{id}` → Modifier un client avec son id
 
+- `DELETE /chauffeurs/{id}` → Supprimer un chauffeur avec son id
+- `DELETE /clients/{id}` → Supprimer un client avec son id
+

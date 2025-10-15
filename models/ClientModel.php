@@ -60,6 +60,14 @@ class ClientModel
         
         return $this->getDBClientById($id);
     }
+
+    public function deleteDBClient($id)
+    {
+        $sql = "DELETE FROM client WHERE client_id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
 }
 
 // $clients = new ClientModel();
