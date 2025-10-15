@@ -71,6 +71,17 @@ class ChauffeurModel
         // Vérifie si une ligne a été modifiée
         return $stmt->rowCount() > 0;
     }
+
+    public function deleteDBChauffeur($id)
+    {
+        $sql = "DELETE FROM chauffeur WHERE chauffeur_id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        // Vérifie si une ligne a été supprimée
+        return $stmt->rowCount() > 0;
+    }
 }
 
 // $chauffeurs = new ChauffeurModel();

@@ -63,6 +63,18 @@ class ChauffeurController
             echo json_encode(["message" => "Chauffeur non trouvé ou non modifié"]);
         }
     }
+
+    public function deleteChauffeur($id)
+    {
+        // Logique pour supprimer un chauffeur
+        $success = $this->model->deleteDBChauffeur($id);
+        if ($success) {
+            http_response_code(204); // OK
+        } else {
+            http_response_code(404); // Erreur : non trouvé
+            echo json_encode(["message" => "Chauffeur introuvable"]);
+        }
+    }
 }
 // $chauffeurController = new ChauffeurController();
 // $chauffeurController->getAllChauffeurs();
